@@ -1,6 +1,6 @@
 def includeProjects
 includeProjects = { File dir ->
-  def flist = dir.listFiles({ it.isDirectory() && !it.name.startsWith('.') && it.name != 'build' && it.name != 'src' } as FileFilter)
+  def flist = dir.listFiles({ it.isDirectory() && !it.name.startsWith('.') && it.name != 'build' && it.name != 'src'  && it.name != 'websocket' } as FileFilter)
   def numProjects = flist?.inject(0, { acc, val -> acc + includeProjects(val) })
   if(!numProjects && dir.name != 'buildSrc' && new File(dir, 'build.gradle').isFile()) {
     include dir.absolutePath.substring(settingsDir.absolutePath.length() + 1).replace(File.separator, ':')
